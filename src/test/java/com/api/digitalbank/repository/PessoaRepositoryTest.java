@@ -9,6 +9,8 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
+
 import com.api.digitalbank.models.Pessoa;
 import com.api.digitalbank.repository.PessoaRepository;
 
@@ -28,6 +30,12 @@ public class PessoaRepositoryTest {
 		Optional<Pessoa> optional = sut.findByCpf("12345678912");
 		
 		assertThat(optional.isPresent()).isTrue();
+		
+		Pessoa pessoa = optional.get();
+		assertThat(pessoa.getCodigo()).isEqualTo(1L);
+		assertThat(pessoa.getNome()).isEqualTo("hernani");
+		assertThat(pessoa.getCpf()).isEqualTo("12345678912");
+		
 	}
-
+	
 }

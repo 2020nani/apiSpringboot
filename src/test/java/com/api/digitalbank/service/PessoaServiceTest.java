@@ -55,7 +55,6 @@ public class PessoaServiceTest {
 public void deve_salvar_pessoa_no_repositorio() throws Exception{
 	
 	sut.salvar(pessoa);
-	System. out. print(pessoa);
 	verify(pessoaRepository).save(pessoa);
 }
 
