@@ -12,6 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import exception.UnicidadeCpfException;
+import exception.UnicidadeEmailException;
 import impl.PessoaServiceImpl;
 import models.Pessoa;
 import repository.PessoaRepository;
@@ -19,8 +20,9 @@ import repository.PessoaRepository;
 @RunWith(SpringRunner.class)
 public class PessoaServiceTest {
 	
-	private static final String NOME = "Hernani Almeida";
-	private static final String CPF = "ok";
+	private static final String nome = "Hernani Almeida";
+	private static final String cpf = "12345678912";
+	private static final String email = "her@hotmail.com";
 	
 //faz um mock de pessoarepository
 	@MockBean
@@ -35,10 +37,11 @@ public class PessoaServiceTest {
 		sut = new PessoaServiceImpl(pessoaRepository);
 		
 		pessoa = new Pessoa();
-		pessoa.setNome(NOME);
-		pessoa.setCpf(CPF);
+		pessoa.setNome(nome);
+		pessoa.setCpf(cpf);
+		pessoa.setEmail(email);
 		
-		when(pessoaRepository.findByCpf(CPF)).thenReturn(Optional.empty());
+		when(pessoaRepository.findByCpf(cpf)).thenReturn(Optional.empty());
 	
 	}
 //teste salvar pessoa	
@@ -46,13 +49,19 @@ public class PessoaServiceTest {
 public void deve_salvar_pessoa_no_repositorio() throws Exception{
 	
 	sut.salvar(pessoa);
-	
+	System. out. print(pessoa);
 	verify(pessoaRepository).save(pessoa);
 }
 
 @Test(expected = UnicidadeCpfException.class)
 public void nao_deve_salvar_duas_pessoas_com_o_mesmo_cpf() throws Exception{
-	when(pessoaRepository.findByCpf(CPF)).thenReturn(Optional.of(pessoa));
+	when(pessoaRepository.findByCpf(cpf)).thenReturn(Optional.of(pessoa));
+	
+	sut.salvar(pessoa);
+}
+@Test(expected = UnicidadeEmailException.class)
+public void nao_deve_salvar_duas_pessoas_com_o_mesmo_email() throws Exception{
+	when(pessoaRepository.findByEmail(email)).thenReturn(Optional.of(pessoa));
 	
 	sut.salvar(pessoa);
 }

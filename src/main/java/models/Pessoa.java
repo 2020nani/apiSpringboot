@@ -5,6 +5,7 @@ import java.util.List;
 public class Pessoa {
     private String nome;
     private String cpf;
+    private String email;
     private List<Endereco> enderecos;
     private List<Telefone> telefones;
     public String getNome() {
@@ -30,6 +31,12 @@ public class Pessoa {
 	}
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
     
