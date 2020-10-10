@@ -1,7 +1,5 @@
 package models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.*;
 
 
@@ -12,13 +10,35 @@ public class Endereco {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
  private Long codigo;
+@Column(length= 40, nullable = false)
  private String rua;
+
+@Column(length= 6, nullable = false)
  private Integer numero;
+
+@Column(length= 30, nullable = false)
  private String complemento;
+
+@Column(length= 30, nullable = false)
  private String bairro;
+
+@Column(length= 30, nullable = false)
  private String cidade;
+
+@Column(length= 20, nullable = false)
  private String estado;
+ 
+ @ManyToOne
+ @JoinColumn(name = "codigo_pessoa")
+private Pessoa pessoa;
   
+ 
+public Pessoa getPessoa() {
+	return pessoa;
+}
+public void setPessoa(Pessoa pessoa) {
+	this.pessoa = pessoa;
+}
 public Long getCodigo() {
 	return codigo;
 }
@@ -61,6 +81,30 @@ public String getEstado() {
 public void setEstado(String estado) {
 	this.estado = estado;
 }
- 
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+	return result;
+}
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Endereco other = (Endereco) obj;
+	if (codigo == null) {
+		if (other.codigo != null)
+			return false;
+	} else if (!codigo.equals(other.codigo))
+		return false;
+	return true;
+}
+
+
  
 }

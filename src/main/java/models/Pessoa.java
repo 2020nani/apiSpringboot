@@ -10,18 +10,25 @@ public class Pessoa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
-	@Column(length= 80, nullable = false)
+	@Column(length= 20, nullable = false)
     private String nome;
 	
-	@Column(length= 11, nullable = false)
+	@Column(length= 40, nullable = false)
     private String sobrenome;
+	
+	@Column(length= 8, nullable = false)
     private String nascimento;
+    
+    @Column(length= 11, nullable = false)
     private String cpf;
+    
+    @Column(length= 30, nullable = false)
     private String email;
     
     @OneToMany(mappedBy = "pessoa")
     private List<Endereco> enderecos;
-    private List<Imagem> profile;
+    @OneToOne(mappedBy = "pessoa")
+    private Imagem profile;
     
     
     public Long getCodigo() {
@@ -49,10 +56,10 @@ public class Pessoa {
 		this.enderecos = enderecos;
 	}
 	
-	public List<Imagem> getProfile() {
+	public Imagem getProfile() {
 		return profile;
 	}
-	public void setProfile(List<Imagem> profile) {
+	public void setProfile(Imagem profile) {
 		this.profile = profile;
 	}
 	public String getEmail() {

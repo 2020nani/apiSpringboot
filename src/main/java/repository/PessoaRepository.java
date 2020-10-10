@@ -2,11 +2,12 @@ package repository;
 
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import models.Pessoa;
 
-public interface PessoaRepository {
+public interface PessoaRepository extends JpaRepository<Pessoa, Long > {
 
-    Pessoa save(Pessoa pessoa);
 
 	Optional<Pessoa> findByCpf(String cpf);
 	

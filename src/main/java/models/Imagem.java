@@ -1,17 +1,21 @@
 package models;
 
-import java.awt.image.BufferedImage;
-
 import javax.persistence.*;
 
-
+@Entity
+@Table(name = "profileImg")
 public class Imagem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-    
-	private BufferedImage profile;
-
+	
+	@Column(length= 1024, nullable = false)
+	private byte[] profileimg;
+	
+	@OneToOne
+    @JoinColumn(name = "codigo_pessoa")
+	private Pessoa pessoa;
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -20,17 +24,38 @@ public class Imagem {
 		this.codigo = codigo;
 	}
 
-	public BufferedImage getProfile() {
-		return profile;
+	public byte[] getProfileimg() {
+		return profileimg;
 	}
 
-	public void setProfile(BufferedImage profile) {
-		this.profile = profile;
+	public void setProfileimg(byte[] profile) {
+		this.profileimg = profile;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Imagem other = (Imagem) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
 	}
 
 	
-    
-	
-   
-   
 }
