@@ -1,12 +1,15 @@
-package impl;
+package com.api.digitalbank.impl;
 
-import models.Pessoa;
-import repository.PessoaRepository;
-import service.PessoaService;
+import com.api.digitalbank.models.*;
+import com.api.digitalbank.repository.*;
+import com.api.digitalbank.service.*;
+
+
+
 import java.util.Optional;
 
-import exception.UnicidadeCpfException;
-import exception.UnicidadeEmailException;
+import com.api.digitalbank.exception.UnicidadeCpfException;
+import com.api.digitalbank.exception.UnicidadeEmailException;
 
 public class PessoaServiceImpl implements PessoaService {
 	private final PessoaRepository pessoaRepository;

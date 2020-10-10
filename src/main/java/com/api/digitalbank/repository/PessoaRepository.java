@@ -1,10 +1,10 @@
-package repository;
+package com.api.digitalbank.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import models.Pessoa;
+import com.api.digitalbank.models.Pessoa;
 
 public interface PessoaRepository extends JpaRepository<Pessoa, Long > {
 

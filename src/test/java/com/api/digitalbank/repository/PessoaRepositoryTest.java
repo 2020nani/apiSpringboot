@@ -1,4 +1,4 @@
-package repository;
+package com.api.digitalbank.repository;
 
 
 import org.junit.runner.RunWith;
@@ -9,9 +9,8 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
-import models.Pessoa;
-
-
+import com.api.digitalbank.models.Pessoa;
+import com.api.digitalbank.repository.PessoaRepository;
 
 import java.util.Optional;
 

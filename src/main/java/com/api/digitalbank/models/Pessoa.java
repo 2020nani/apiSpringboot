@@ -1,4 +1,4 @@
-package models;
+package com.api.digitalbank.models;
 
 import javax.persistence.*;
 import java.util.List;

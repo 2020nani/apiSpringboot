@@ -1,4 +1,4 @@
-package service;
+package com.api.digitalbank.service;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -11,11 +11,12 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import exception.UnicidadeCpfException;
-import exception.UnicidadeEmailException;
-import impl.PessoaServiceImpl;
-import models.Pessoa;
-import repository.PessoaRepository;
+import com.api.digitalbank.exception.UnicidadeCpfException;
+import com.api.digitalbank.exception.UnicidadeEmailException;
+import com.api.digitalbank.impl.PessoaServiceImpl;
+import com.api.digitalbank.models.Pessoa;
+import com.api.digitalbank.repository.PessoaRepository;
+import com.api.digitalbank.service.PessoaService;
 
 @RunWith(SpringRunner.class)
 public class PessoaServiceTest {
