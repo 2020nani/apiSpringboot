@@ -27,8 +27,8 @@ public class Pessoa {
     
     @OneToMany(mappedBy = "pessoa")
     private List<Endereco> enderecos;
-    @OneToOne(mappedBy = "pessoa")
-    private Imagem profile;
+   // @OneToOne(mappedBy = "pessoa")
+   // private Imagem profile;
     
     
     public Long getCodigo() {
@@ -56,12 +56,12 @@ public class Pessoa {
 		this.enderecos = enderecos;
 	}
 	
-	public Imagem getProfile() {
+	/*public Imagem getProfile() {
 		return profile;
 	}
 	public void setProfile(Imagem profile) {
 		this.profile = profile;
-	}
+	}*/
 	public String getEmail() {
 		return email;
 	}

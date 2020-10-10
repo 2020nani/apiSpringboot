@@ -13,7 +13,7 @@ public class Endereco {
 @Column(length= 255, nullable = false)
  private String rua;
 
-@Column(length= 6, nullable = false)
+//@Column(length= 6, nullable = false)
  private Integer numero;
 
 @Column(length= 255, nullable = false)
