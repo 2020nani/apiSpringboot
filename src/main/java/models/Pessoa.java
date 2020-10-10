@@ -10,10 +10,10 @@ public class Pessoa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
-	@Column(length= 20, nullable = false)
+	@Column(length= 30, nullable = false)
     private String nome;
 	
-	@Column(length= 40, nullable = false)
+	@Column(length= 30, nullable = false)
     private String sobrenome;
 	
 	@Column(length= 8, nullable = false)

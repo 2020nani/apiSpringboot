@@ -10,22 +10,22 @@ public class Endereco {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
  private Long codigo;
-@Column(length= 40, nullable = false)
+@Column(length= 255, nullable = false)
  private String rua;
 
 @Column(length= 6, nullable = false)
  private Integer numero;
 
-@Column(length= 30, nullable = false)
+@Column(length= 255, nullable = false)
  private String complemento;
 
-@Column(length= 30, nullable = false)
+@Column(length= 255, nullable = false)
  private String bairro;
 
-@Column(length= 30, nullable = false)
+@Column(length= 255, nullable = false)
  private String cidade;
 
-@Column(length= 20, nullable = false)
+@Column(length= 2, nullable = false)
  private String estado;
  
  @ManyToOne
