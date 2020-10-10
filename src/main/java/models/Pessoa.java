@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Pessoa {
     private String nome;
+    private String sobrenome;
+    private String nascimento;
     private String cpf;
     private String email;
     private List<Endereco> enderecos;
@@ -37,6 +39,18 @@ public class Pessoa {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getSobrenome() {
+		return sobrenome;
+	}
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+	public String getNascimento() {
+		return nascimento;
+	}
+	public void setNascimento(String nascimento) {
+		this.nascimento = nascimento;
 	}
 	
     

@@ -20,7 +20,9 @@ import repository.PessoaRepository;
 @RunWith(SpringRunner.class)
 public class PessoaServiceTest {
 	
-	private static final String nome = "Hernani Almeida";
+	private static final String nome = "Hernani";
+	private static final String sobrenome = "Almeida";
+	private static final String nascimento = "11/11/1984";
 	private static final String cpf = "12345678912";
 	private static final String email = "her@hotmail.com";
 	
@@ -38,10 +40,13 @@ public class PessoaServiceTest {
 		
 		pessoa = new Pessoa();
 		pessoa.setNome(nome);
+		pessoa.setSobrenome(sobrenome);
+		pessoa.setNascimento(nascimento);
 		pessoa.setCpf(cpf);
 		pessoa.setEmail(email);
 		
 		when(pessoaRepository.findByCpf(cpf)).thenReturn(Optional.empty());
+		when(pessoaRepository.findByEmail(email)).thenReturn(Optional.empty());
 	
 	}
 //teste salvar pessoa	
