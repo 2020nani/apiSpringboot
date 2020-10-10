@@ -1,12 +1,30 @@
 package models;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.*;
+
+
+@Entity
+@Table(name= "endereco")
 public class Endereco {
+	
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+ private Long codigo;
  private String rua;
  private Integer numero;
  private String complemento;
  private String bairro;
  private String cidade;
  private String estado;
+  
+public Long getCodigo() {
+	return codigo;
+}
+public void setCodigo(Long codigo) {
+	this.codigo = codigo;
+}
 public String getRua() {
 	return rua;
 }

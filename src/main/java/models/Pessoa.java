@@ -1,16 +1,36 @@
 package models;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "pessoa")
 public class Pessoa {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long codigo;
+	
+	@Column(length= 80, nullable = false)
     private String nome;
+	
+	@Column(length= 11, nullable = false)
     private String sobrenome;
     private String nascimento;
     private String cpf;
     private String email;
+    
+    @OneToMany(mappedBy = "pessoa")
     private List<Endereco> enderecos;
-    private List<Telefone> telefones;
-    public String getNome() {
+    private List<Imagem> profile;
+    
+    
+    public Long getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
@@ -28,11 +48,12 @@ public class Pessoa {
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
-	public List<Telefone> getTelefones() {
-		return telefones;
+	
+	public List<Imagem> getProfile() {
+		return profile;
 	}
-	public void setTelefones(List<Telefone> telefones) {
-		this.telefones = telefones;
+	public void setProfile(List<Imagem> profile) {
+		this.profile = profile;
 	}
 	public String getEmail() {
 		return email;
@@ -52,6 +73,30 @@ public class Pessoa {
 	public void setNascimento(String nascimento) {
 		this.nascimento = nascimento;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pessoa other = (Pessoa) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
+	
 	
     
 }
