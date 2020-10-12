@@ -4,9 +4,10 @@ import com.api.digitalbank.models.Pessoa;
 
 import com.api.digitalbank.repository.PessoaRepository;
 import com.api.digitalbank.service.PessoaService;
-
+import com.api.digitalbank.exception.MenorIdadeException;
 import com.api.digitalbank.exception.UnicidadeCpfException;
 import com.api.digitalbank.exception.UnicidadeEmailException;
+import com.api.digitalbank.exception.UnicidadeValidaEmailException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,12 +33,12 @@ public class PessoaResource {
    
 
     @PostMapping
-    public ResponseEntity<Pessoa> salvarNova(@RequestBody Pessoa pessoa) throws UnicidadeCpfException, UnicidadeEmailException {
+    public ResponseEntity<Pessoa> salvarNova(@RequestBody Pessoa pessoa, HttpServletResponse response) throws UnicidadeCpfException, UnicidadeEmailException,MenorIdadeException,UnicidadeValidaEmailException {
         final Pessoa pessoaSalva = pessoaService.salvar(pessoa);
 
-       /* URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{ddd}/{numero}")
-                .buildAndExpand(pessoa.getTelefones().get(0).getDdd(), pessoa.getTelefones().get(0).getNumero()).toUri();
-        response.setHeader("Location", uri.toASCIIString());*/
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
+                .buildAndExpand().toUri();
+        response.setHeader("Location", uri.toASCIIString());
 
         return new ResponseEntity<>(pessoaSalva, HttpStatus.CREATED);
     }
@@ -50,6 +51,14 @@ public class PessoaResource {
     }
     @ExceptionHandler({UnicidadeEmailException.class})
     public ResponseEntity<Erro> handleUnicidadeEmailException(UnicidadeEmailException e) {
+        return new ResponseEntity<>(new Erro(e.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler({UnicidadeValidaEmailException.class})
+    public ResponseEntity<Erro> handleUnicidadeValidaEmailException(UnicidadeValidaEmailException e) {
+        return new ResponseEntity<>(new Erro(e.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler({MenorIdadeException.class})
+    public ResponseEntity<Erro> handleMenorIdadeException(MenorIdadeException e) {
         return new ResponseEntity<>(new Erro(e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 

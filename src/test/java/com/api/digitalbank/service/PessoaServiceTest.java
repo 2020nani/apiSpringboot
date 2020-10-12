@@ -24,9 +24,9 @@ public class PessoaServiceTest {
 	
 	private static final String nome = "Hernani";
 	private static final String sobrenome = "Almeida";
-	private static final String nascimento = "11/11/1984";
+	private static final String nascimento = "11111984";
 	private static final String cpf = "12345678912";
-	private static final String email = "her@hotmail.com";
+	private static final String email = "hr@hotmail.com";
 	
 //faz um mock de pessoarepository
 	@MockBean

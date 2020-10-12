@@ -1,11 +1,15 @@
 package com.api.digitalbank.models;
 
 import javax.persistence.*;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @Entity
 @Table(name = "pessoa")
 public class Pessoa {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
@@ -16,7 +20,7 @@ public class Pessoa {
 	@Column(length= 30, nullable = false)
    private String sobrenome;
 	
-	@Column(length= 10, nullable = false)
+	@Column(length= 11, nullable = false)
     private String nascimento;
     
     @Column(length= 11, nullable = false)
