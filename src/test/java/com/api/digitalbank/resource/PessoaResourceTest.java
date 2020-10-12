@@ -1,5 +1,7 @@
 package com.api.digitalbank.resource;
 
+
+
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 
@@ -26,8 +28,8 @@ public class PessoaResourceTest extends DigitalbankApplicationTests {
 	   .when()
 	   .post("/pessoas")
 	   .then()
-	        // .log().headers()
-	     //  .and()
+	       .log().headers()
+	       .and()
 	         .log().body()
 	       .and()
 	         .statusCode(HttpStatus.CREATED.value());
