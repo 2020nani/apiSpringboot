@@ -32,7 +32,7 @@ public class PessoaResource {
    
 
     @PostMapping
-    public ResponseEntity<Pessoa> salvarNova(@RequestBody Pessoa pessoa, HttpServletResponse response) throws UnicidadeCpfException, UnicidadeEmailException {
+    public ResponseEntity<Pessoa> salvarNova(@RequestBody Pessoa pessoa) throws UnicidadeCpfException, UnicidadeEmailException {
         final Pessoa pessoaSalva = pessoaService.salvar(pessoa);
 
        /* URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{ddd}/{numero}")
@@ -46,6 +46,10 @@ public class PessoaResource {
 
     @ExceptionHandler({UnicidadeCpfException.class})
     public ResponseEntity<Erro> handleUnicidadeCpfException(UnicidadeCpfException e) {
+        return new ResponseEntity<>(new Erro(e.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler({UnicidadeEmailException.class})
+    public ResponseEntity<Erro> handleUnicidadeEmailException(UnicidadeEmailException e) {
         return new ResponseEntity<>(new Erro(e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 

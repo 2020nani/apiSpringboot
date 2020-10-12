@@ -14,9 +14,9 @@ public class Pessoa {
     private String nome;
 	
 	@Column(length= 30, nullable = false)
-    private String sobrenome;
+   private String sobrenome;
 	
-	@Column(length= 8, nullable = false)
+	@Column(length= 10, nullable = false)
     private String nascimento;
     
     @Column(length= 11, nullable = false)
@@ -25,8 +25,8 @@ public class Pessoa {
     @Column(length= 30, nullable = false)
     private String email;
     
-    @OneToMany(mappedBy = "pessoa")
-    private List<Endereco> enderecos;
+   // @OneToMany(mappedBy = "pessoa")
+   // private List<Endereco> enderecos;
    // @OneToOne(mappedBy = "pessoa")
    // private Imagem profile;
     
@@ -43,31 +43,6 @@ public class Pessoa {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	public List<Endereco> getEnderecos() {
-		return enderecos;
-	}
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
-	}
-	
-	/*public Imagem getProfile() {
-		return profile;
-	}
-	public void setProfile(Imagem profile) {
-		this.profile = profile;
-	}*/
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	public String getSobrenome() {
 		return sobrenome;
 	}
@@ -80,6 +55,34 @@ public class Pessoa {
 	public void setNascimento(String nascimento) {
 		this.nascimento = nascimento;
 	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	/*public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+	
+	public Imagem getProfile() {
+		return profile;
+	}
+	public void setProfile(Imagem profile) {
+		this.profile = profile;
+	}*/
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

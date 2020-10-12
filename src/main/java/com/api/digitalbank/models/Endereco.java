@@ -30,7 +30,7 @@ public class Endereco {
  
  @ManyToOne
  @JoinColumn(name = "codigo_pessoa")
-private Pessoa pessoa;
+ private Pessoa pessoa;
   
  
 public Pessoa getPessoa() {
