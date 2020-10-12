@@ -82,7 +82,7 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long > {
 	            CPF.substring(6, 9) + "-" + CPF.substring(9, 11));
 	        }
 
-	/*//validar data
+	//validar data
 	public static int calculaIdade(String nascimento) {
 
 		// Data de hoje.
@@ -93,8 +93,8 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long > {
 
 		// Data do nascimento.
 		int dian = Integer.valueOf(nascimento.substring(0,2));
-		int mesn = Integer.valueOf(nascimento.substring(3,5));
-		int anon = Integer.valueOf(nascimento.substring(6,10));
+		int mesn = Integer.valueOf(nascimento.substring(2,4));
+		int anon = Integer.valueOf(nascimento.substring(4,8));
 
 		// Idade.
 		int idade;
@@ -105,7 +105,7 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long > {
 		idade = (anoh - anon)-1;
 
 		return (idade);
-		}*/
+             }
 
 	Optional<Pessoa> findByCpf(String cpf);
 	

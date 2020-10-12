@@ -27,7 +27,7 @@ public class PessoaServiceImpl implements PessoaService {
     	boolean validaEmail = PessoaRepository.isValidEmailAddress(pessoa.getEmail()) ;
     	
     	boolean validacpf = PessoaRepository.ValidaCPF(pessoa.getCpf());
-    //	int nasci = PessoaRepository.calculaIdade(pessoa.getNascimento()) ;
+       int nasci = PessoaRepository.calculaIdade(pessoa.getNascimento()) ;
     	
     	Optional<Pessoa> optionalcpf = pessoaRepository.findByCpf(pessoa.getCpf());
     	
@@ -45,9 +45,9 @@ public class PessoaServiceImpl implements PessoaService {
     	if(validacpf == false ) {
     		throw new UnicidadeValidaEmailException("Nao existe este formato de cpf");
     	}
-    	//if(nasci<18) {
-    	//	throw new MenorIdadeException("Apenas maiores de 18 anos podem abrir conta");
-    	//}
+    	if(nasci<18) {
+    		throw new MenorIdadeException("Apenas maiores de 18 anos podem abrir conta");
+    	}
     	return pessoaRepository.save(pessoa);
     }
 }

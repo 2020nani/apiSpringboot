@@ -129,4 +129,27 @@ public class PessoaResourceTest extends DigitalbankApplicationTests {
 	        
 	         
    }
+   @Test
+   public void nao_deve_salvar_pessoa_idade_menor_18() throws Exception {
+	   final Pessoa pessoa = new Pessoa();
+	   pessoa.setNome("mariovaldoi");
+	   pessoa.setSobrenome("sbbbbb");
+	   pessoa.setNascimento("31122009");
+	   pessoa.setCpf("33607069867");
+	   pessoa.setEmail("yt@hotmail.com");
+	   given()
+	         .request()
+	         .header("Accept", ContentType.ANY)
+	         .header("Content-type", ContentType.JSON)
+	         .body(pessoa)
+	   .when()
+	   .post("/pessoas")
+	   .then()
+	         .log().body()
+	       .and()
+	         .statusCode(HttpStatus.BAD_REQUEST.value())
+	         .body("erro",equalTo("Apenas maiores de 18 anos podem abrir conta"));
+	        
+	         
+   }
 }
