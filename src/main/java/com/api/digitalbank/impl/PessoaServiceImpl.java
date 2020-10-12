@@ -8,9 +8,13 @@ import com.api.digitalbank.service.*;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.api.digitalbank.exception.UnicidadeCpfException;
 import com.api.digitalbank.exception.UnicidadeEmailException;
 
+
+@Service
 public class PessoaServiceImpl implements PessoaService {
 	private final PessoaRepository pessoaRepository;
     public PessoaServiceImpl(PessoaRepository pessoaRepository) {
