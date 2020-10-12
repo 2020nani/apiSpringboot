@@ -20,7 +20,7 @@ public class PessoaResourceTest extends DigitalbankApplicationTests {
 	   pessoa.setNome("mariovaldoi");
 	   pessoa.setSobrenome("sbbbbb");
 	   pessoa.setNascimento("11101984");
-	   pessoa.setCpf("12345458915");
+	   pessoa.setCpf("33607069867");
 	   pessoa.setEmail("gg@hotmail.com");
 	   given()
 	         .request()
@@ -66,7 +66,7 @@ public class PessoaResourceTest extends DigitalbankApplicationTests {
 	   pessoa.setNome("mariovaldoi");
 	   pessoa.setSobrenome("sbbbbb");
 	   pessoa.setNascimento("31121989");
-	   pessoa.setCpf("00000000001");
+	   pessoa.setCpf("33607069867");
 	   pessoa.setEmail("hr@hotmail.com");
 	   given()
 	         .request()
@@ -89,7 +89,7 @@ public class PessoaResourceTest extends DigitalbankApplicationTests {
 	   pessoa.setNome("mariovaldoi");
 	   pessoa.setSobrenome("sbbbbb");
 	   pessoa.setNascimento("31121989");
-	   pessoa.setCpf("00000000001");
+	   pessoa.setCpf("33607069867");
 	   pessoa.setEmail("h");
 	   given()
 	         .request()
@@ -103,6 +103,29 @@ public class PessoaResourceTest extends DigitalbankApplicationTests {
 	       .and()
 	         .statusCode(HttpStatus.BAD_REQUEST.value())
 	         .body("erro",equalTo("Nao existe este formato de email"));
+	        
+	         
+   }
+   @Test
+   public void nao_deve_salvar_pessoa_cpf_formato_naoexistente() throws Exception {
+	   final Pessoa pessoa = new Pessoa();
+	   pessoa.setNome("mariovaldoi");
+	   pessoa.setSobrenome("sbbbbb");
+	   pessoa.setNascimento("31121989");
+	   pessoa.setCpf("19560875432");
+	   pessoa.setEmail("yt@hotmail.com");
+	   given()
+	         .request()
+	         .header("Accept", ContentType.ANY)
+	         .header("Content-type", ContentType.JSON)
+	         .body(pessoa)
+	   .when()
+	   .post("/pessoas")
+	   .then()
+	         .log().body()
+	       .and()
+	         .statusCode(HttpStatus.BAD_REQUEST.value())
+	         .body("erro",equalTo("Nao existe este formato de cpf"));
 	        
 	         
    }

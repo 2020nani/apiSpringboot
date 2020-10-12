@@ -8,6 +8,7 @@ import com.api.digitalbank.exception.MenorIdadeException;
 import com.api.digitalbank.exception.UnicidadeCpfException;
 import com.api.digitalbank.exception.UnicidadeEmailException;
 import com.api.digitalbank.exception.UnicidadeValidaEmailException;
+import com.api.digitalbank.exception.ValidaCpfException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +34,7 @@ public class PessoaResource {
    
 
     @PostMapping
-    public ResponseEntity<Pessoa> salvarNova(@RequestBody Pessoa pessoa, HttpServletResponse response) throws UnicidadeCpfException, UnicidadeEmailException,MenorIdadeException,UnicidadeValidaEmailException {
+    public ResponseEntity<Pessoa> salvarNova(@RequestBody Pessoa pessoa, HttpServletResponse response) throws UnicidadeCpfException, UnicidadeEmailException,MenorIdadeException,UnicidadeValidaEmailException,ValidaCpfException {
         final Pessoa pessoaSalva = pessoaService.salvar(pessoa);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
@@ -55,6 +56,10 @@ public class PessoaResource {
     }
     @ExceptionHandler({UnicidadeValidaEmailException.class})
     public ResponseEntity<Erro> handleUnicidadeValidaEmailException(UnicidadeValidaEmailException e) {
+        return new ResponseEntity<>(new Erro(e.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler({ValidaCpfException.class})
+    public ResponseEntity<Erro> handleValidaCpfException(ValidaCpfException e) {
         return new ResponseEntity<>(new Erro(e.getMessage()), HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler({MenorIdadeException.class})
