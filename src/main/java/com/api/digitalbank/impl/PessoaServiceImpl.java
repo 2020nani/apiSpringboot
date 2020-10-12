@@ -27,10 +27,10 @@ public class PessoaServiceImpl implements PessoaService {
     	Optional<Pessoa> optionalemail = pessoaRepository.findByEmail(pessoa.getEmail());
     	
     	if( optionalcpf.isPresent() ) {
-    		throw new UnicidadeCpfException();
+    		throw new UnicidadeCpfException("Ja existe pessoa cadastrada com este CPF");
     	}
     	if( optionalemail.isPresent() ) {
-    		throw new UnicidadeEmailException();
+    		throw new UnicidadeEmailException("Ja existe pessoa cadastrada com este Email");
     	}
     	
     	return pessoaRepository.save(pessoa);

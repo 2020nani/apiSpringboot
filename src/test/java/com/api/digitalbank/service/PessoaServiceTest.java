@@ -6,11 +6,12 @@ import static org.mockito.Mockito.when;
 import java.util.Optional;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-
+import org.junit.rules.ExpectedException;
 import com.api.digitalbank.exception.UnicidadeCpfException;
 import com.api.digitalbank.exception.UnicidadeEmailException;
 import com.api.digitalbank.impl.PessoaServiceImpl;
@@ -30,6 +31,9 @@ public class PessoaServiceTest {
 //faz um mock de pessoarepository
 	@MockBean
 	private PessoaRepository pessoaRepository;
+	@SuppressWarnings("deprecation")
+	
+    
 	
 	private PessoaService sut;
 	
@@ -60,8 +64,9 @@ public void deve_salvar_pessoa_no_repositorio() throws Exception{
 
 @Test(expected = UnicidadeCpfException.class)
 public void nao_deve_salvar_duas_pessoas_com_o_mesmo_cpf() throws Exception{
-	when(pessoaRepository.findByCpf(cpf)).thenReturn(Optional.of(pessoa));
-	
+	 when(pessoaRepository.findByCpf(cpf)).thenReturn(Optional.of(pessoa));
+
+     
 	sut.salvar(pessoa);
 }
 @Test(expected = UnicidadeEmailException.class)

@@ -10,6 +10,8 @@ import com.api.digitalbank.DigitalbankApplicationTests;
 import com.api.digitalbank.models.Pessoa;
 
 import io.restassured.http.ContentType;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.equalTo;
 
 public class PessoaResourceTest extends DigitalbankApplicationTests {
    @Test
@@ -33,7 +35,51 @@ public class PessoaResourceTest extends DigitalbankApplicationTests {
 	         .log().body()
 	       .and()
 	         .statusCode(HttpStatus.CREATED.value());
-	        //.header("Location", equals("http://localhost:"+porta+"/pessoas/6"));
+	                  
+   }
+   @Test
+   public void nao_deve_salvar_pessoa_mesmo_cpf() throws Exception {
+	   final Pessoa pessoa = new Pessoa();
+	   pessoa.setNome("mariovaldoi");
+	   pessoa.setSobrenome("sbbbbb");
+	   pessoa.setNascimento("31121989");
+	   pessoa.setCpf("12345678912");
+	   pessoa.setEmail("h");
+	   given()
+	         .request()
+	         .header("Accept", ContentType.ANY)
+	         .header("Content-type", ContentType.JSON)
+	         .body(pessoa)
+	   .when()
+	   .post("/pessoas")
+	   .then()
+	         .log().body()
+	       .and()
+	         .statusCode(HttpStatus.BAD_REQUEST.value())
+	         .body("erro",equalTo("Ja existe pessoa cadastrada com este CPF"));
+	                
+   }
+   @Test
+   public void nao_deve_salvar_pessoa_mesmo_email() throws Exception {
+	   final Pessoa pessoa = new Pessoa();
+	   pessoa.setNome("mariovaldoi");
+	   pessoa.setSobrenome("sbbbbb");
+	   pessoa.setNascimento("31121989");
+	   pessoa.setCpf("00000000001");
+	   pessoa.setEmail("hr@hotmail.com");
+	   given()
+	         .request()
+	         .header("Accept", ContentType.ANY)
+	         .header("Content-type", ContentType.JSON)
+	         .body(pessoa)
+	   .when()
+	   .post("/pessoas")
+	   .then()
+	         .log().body()
+	       .and()
+	         .statusCode(HttpStatus.BAD_REQUEST.value())
+	         .body("erro",equalTo("Ja existe pessoa cadastrada com este Email"));
+	        
 	         
    }
 }
