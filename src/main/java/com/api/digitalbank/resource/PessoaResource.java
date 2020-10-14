@@ -1,5 +1,6 @@
 package com.api.digitalbank.resource;
 
+import com.api.digitalbank.models.Endereco;
 import com.api.digitalbank.models.Pessoa;
 
 import com.api.digitalbank.repository.PessoaRepository;
@@ -43,7 +44,6 @@ public class PessoaResource {
 
         return new ResponseEntity<>(pessoaSalva, HttpStatus.CREATED);
     }
-
     
 
     @ExceptionHandler({UnicidadeCpfException.class})

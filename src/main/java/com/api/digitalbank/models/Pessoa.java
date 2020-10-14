@@ -2,13 +2,13 @@ package com.api.digitalbank.models;
 
 import javax.persistence.*;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.io.Serializable;
+
 import java.util.List;
 
 @Entity
 @Table(name = "pessoa")
-public class Pessoa {
+public class Pessoa implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +29,8 @@ public class Pessoa {
     @Column(length= 30, nullable = false)
     private String email;
     
-   // @OneToMany(mappedBy = "pessoa")
-   // private List<Endereco> enderecos;
+    //@OneToMany(mappedBy = "pessoa")
+    //private List<Endereco> enderecos;
    // @OneToOne(mappedBy = "pessoa")
    // private Imagem profile;
     
@@ -38,8 +38,8 @@ public class Pessoa {
     public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setCodigo(Long codigo_pessoa) {
+		this.codigo = codigo_pessoa;
 	}
 	public String getNome() {
 		return nome;
